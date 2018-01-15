@@ -70,8 +70,10 @@ function currencyData(obj) {
 
    event(currency_data);
    addDomItem(currency_data);
-   count(currency_data)
-
+   count(currency_data);
+   if(obj[0]['table']==="A") {
+       new DomNode("p","Aktualny kurs pochodzi z: "+ obj[0]["effectiveDate"], document.body)
+   }
 
 }
 
@@ -85,7 +87,7 @@ function event(data)
             var option= select.options[i];
             if(option.selected)
             {
-                getUrl(data,option.value);
+                currencyView(getUrl(data,option.value));
 
 
             }
@@ -105,7 +107,9 @@ function getUrl(obj, val)
        table:obj[key]['table'],
        date: obj[key]['date'],
        mid: obj[key]['mid']}  }});
-   currencyView(currnecy_values);
+
+
+
   return currnecy_values
 }
 
@@ -137,30 +141,16 @@ function currencyView(data)
 
     var content= document.getElementById("currency_view");
 
-    if(content.children.length>=1)
-    {
-        content.removeChild(content.childNodes[0]);
 
 
 
-    }
+    removenode(content,2);
 
     if(typeof data==="object") {
         if(data['code']!==undefined) {
 
-
-            var header_info = document.createElement("H1");
-            var paragraph_info = document.createElement("p");
-            var header_text = document.createTextNode(data['name']);
-            var paragrpah_text = document.createTextNode(data['code']);
-
-
-            header_info.appendChild(header_text);
-            paragraph_info.appendChild(paragrpah_text);
-
-            content.appendChild(header_info);
-            content.appendChild(paragraph_info);
-
+           new DomNode("H1", data['name'], content);
+           new DomNode("p", data['code'],content);
 
         }
 
@@ -168,6 +158,30 @@ function currencyView(data)
     }
 
 }
+function removenode(content,n)
+{
+    if(content.children.length>=n)
+    {
+        content.removeChild(content.childNodes[0]);
+
+
+
+    }
+
+}
+
+
+function DomNode(node, child, content)
+{
+    this.node= document.createElement(node);
+    this.child= document.createTextNode(child);
+    this.node.appendChild(this.child);
+    this.content= content.appendChild(this.node);
+    return this.content;
+
+
+}
+
 function count(opt)
 {
 
@@ -176,6 +190,7 @@ function count(opt)
     var sec= document.getElementById("to");
     var input= document.getElementById("Currencyinput");
     var inputerror= document.getElementById("inputerror");
+    var result= document.getElementById("result");
     btn.addEventListener('click', function(ev){
 
             for(var i=0; i<slt.options.length;i++)
@@ -217,8 +232,14 @@ function count(opt)
                     console.log(input.value);
                     input.style.border="";
                     inputerror.style.display="none";
+
                     var sum= Math.round((f*inputint/t)*100)/100;
 
+                    new DomNode("H2", sum,  result );
+                    new DomNode("p", sval['name'],  result );
+
+
+                   
 
                 }
                 else
