@@ -6,20 +6,29 @@ export class Dom
 {
 
     constructor(data){
+
         this.data= data;
         this.optionElement= [];
         this.select_list = document.getElementsByClassName("currency_list");
+        this.digit_regex= new RegExp(/^\d+$/);
+        this.btn= document.querySelector("button");
+        this.slt= document.getElementById("from");
+        this.sec= document.getElementById("to");
+        this.input= document.getElementById("Currencyinput");
+        this.inputerror= document.getElementById("inputerror");
+        this.select= document.getElementById("list");
 
     };
-
+    
+   
     event()
     {
         
-    var select= document.getElementById("list");
-    select.addEventListener("change",function(){
-        for(let i=0; i<select.options.length;i++)
+   
+    this.select.addEventListener("change",function(){
+        for(let i=0; i<this.select.options.length;i++)
         {
-            var option= select.options[i];
+            var option= this.select.options[i];
             if(option.selected)
             {
                 
@@ -34,7 +43,7 @@ export class Dom
     },false);
 }
 
-addDomItem() {
+addDomElement() {
    
     for(let key in this.data)
     {
@@ -55,27 +64,42 @@ addDomItem() {
 
     }
 }
+convert( currency_val, converted_val)
+ {
+    
+                if(this.digit_regex.test(this.input.value)) {
+                    let inputint= parseInt(this.input.value);
+                    let sum= Math.round((currency_val*inputint/converted_val)*100)/100;
+                   console.log(sum)
+                    
+
+                }
+                else
+                {
+                    this.input.classList.toggle("error");
+                    this.inputerror.classList.toggle("isActive");
+
+                }
+
+
+    }
+
 count()
 {
 
-    var btn= document.querySelector("button");
-    var slt= document.getElementById("from");
-    var sec= document.getElementById("to");
-    var input= document.getElementById("Currencyinput");
-    var inputerror= document.getElementById("inputerror");
-    btn.addEventListener('click', (ev)=>{
+    this.btn.addEventListener('click', (ev)=>{
 
-            for(let i=0; i<slt.options.length;i++)
+            for(let i=0; i<this.slt.options.length;i++)
             {
-                var fir_option= slt.options[i];
-                var sec_option= sec.options[i];
+                var fir_option= this.slt.options[i];
+                var sec_option= this.sec.options[i];
                 
                 if(fir_option.selected )
                 {
 
                  var val= new CurrencyData(this.data, fir_option.value).getUrl();
 
-                    if(typeof val['mid']==='number' )
+                    if(typeof val['mid']==='number' && typeof val['mid']!='undefined')
                     {
                         var f= val['mid'];
 
@@ -87,7 +111,7 @@ count()
                 {
                     var  sval= new CurrencyData(this.data, sec_option.value).getUrl();
                     
-                    if(typeof sval['mid']==='number')
+                    if(typeof sval['mid']==='number' && typeof sval['mid']!='undefined')
                     {
                         var t= sval['mid'];
                     }
@@ -96,37 +120,11 @@ count()
 
 
             }
-            if(typeof f!== 'undefined' && typeof  t!== 'undefined')
-            {
-                var re= new RegExp(/^\d+$/);
-
-                if(re.test(input.value)) {
-                    var inputint= parseInt(input.value);
             
-                    input.style.border="";
-                    inputerror.style.display="none";
-                    var sum= Math.round((f*inputint/t)*100)/100;
-                    console.log(sum);
-                    
-                    
+                this.convert(f, t);
 
-
-                }
-                else
-                {
-                    input.style.border="2px solid red";
-                    inputerror.style.display="";
-
-                }
-
-
-
-
-            }
-
-
-
-
+            
+            
 
     },false)
 }

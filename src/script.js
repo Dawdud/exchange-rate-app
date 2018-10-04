@@ -1,7 +1,7 @@
-import {requestXML} from './requestxml'
-import {CurrencyData} from './CurrencyInf'
-import {Dom} from './dom'
-
+import {requestXML} from './requestxml';
+import {CurrencyData} from './CurrencyInf';
+import {Dom} from './dom';
+import '../css/main.scss'
 
  
 function currencyView(data)
@@ -48,7 +48,7 @@ requestXML("http://api.nbp.pl/api/exchangerates/tables/B/?format=json").then(fun
   let currencyObjs=  new CurrencyData(jsonfile).getCurrencyValue();
   let domObjs= new Dom(currencyObjs);
   domObjs.event();
-  domObjs.addDomItem();
+  domObjs.addDomElement();
   domObjs.count();
   
   }, function(error) {

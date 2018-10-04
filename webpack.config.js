@@ -6,7 +6,7 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist')
   },
- 
+  watch: true,
   devServer:{
     contentBase: path.join(__dirname,'dist'),
     compress: true,
@@ -26,15 +26,25 @@ module.exports = {
           },
           {
             test:/\.scss$/,
-            use:[ {loader: 'style-loader',
-            loader: 'css-loader',
-            loader: 'sass-loader',
-          options: {
-            includePaths: ["../css/main.scss", "../dist/main.css"]
-          }}
-          ]
-          }
+            
+            use: [
+              {
+                loader: "style-loader" 
+              },
+              {
+                loader: "css-loader" 
+              },
+              {
+                loader: "sass-loader" 
+    }
+            ]
+         
+        
+          },
+          
 
       ]
-  }
+
+  },
+  
 };

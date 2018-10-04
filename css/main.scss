@@ -1,2 +1,16 @@
-body{ background: black;
-border: red;}
+
+body{ 
+
+}
+.error
+{
+   border: 2px solid red;
+}
+#inputerror
+{
+     display: none;
+}
+.isActive
+{
+ display: block !important;
+}
