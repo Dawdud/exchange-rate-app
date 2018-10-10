@@ -1,7 +1,6 @@
-
-import {CurrencyData} from './CurrencyInf'
+import {CurrencyData} from './CurrencyInf';
 import {Conversion} from './conversion'
-
+import {handler} from './handler'
 
 export class Dom
 {
@@ -10,14 +9,7 @@ export class Dom
 
         this.data= data;
         this.optionElement= [];
-        this.select_list = document.getElementsByClassName("currency_list");
-        this.digit_regex= new RegExp(/^\d+$/);
-        this.btn= document.querySelector("button");
-        this.slt= document.getElementById("from");
-        this.sec= document.getElementById("to");
-        this.input= document.getElementById("Currencyinput");
-        this.inputerror= document.getElementById("inputerror");
-        this.select= document.getElementById("list");
+        
 
     };
     
@@ -26,10 +18,10 @@ export class Dom
     {
         
    
-    this.select.addEventListener("change",function(){
-        for(let i=0; i<this.select.options.length;i++)
+    handler.select.addEventListener("change",function(){
+        for(let i=0; i<handler.select.options.length;i++)
         {
-            var option= this.select.options[i];
+            var option= handler.select.options[i];
             if(option.selected)
             {
                 
@@ -42,6 +34,35 @@ export class Dom
         }
 
     },false);
+}
+
+currencyView()
+{
+
+    
+    var content= document.getElementById("currency_view");
+
+    
+    var HeaderDomElement = document.createElement("H1");
+    var secondHeaderDomElement = document.createElement("H2");
+    
+    
+    var header_text = document.createTextNode(this.data['desiredCurrencyValue']);
+    var paragrpah_text = document.createTextNode(this.data['desiredCurrencyName']);
+
+
+    HeaderDomElement.appendChild(header_text);
+    secondHeaderDomElement.appendChild(paragrpah_text);
+
+    content.appendChild(HeaderDomElement);
+    content.appendChild(secondHeaderDomElement);
+
+
+        
+
+
+    
+
 }
 
 addDomElement() {
@@ -57,80 +78,14 @@ addDomElement() {
         option.value = this.optionElement[i];
         option.text = this.optionElement[i];
 
-        this.select_list[0].appendChild(option);
-        this.select_list[1].appendChild(option.cloneNode(true));
-        this.select_list[2].appendChild(option.cloneNode(true));
+        handler.SelectList[0].appendChild(option);
+        handler.SelectList[1].appendChild(option.cloneNode(true));
+        handler.SelectList[2].appendChild(option.cloneNode(true));
 
 
 
     }
 }
-convert( currency_val, converted_val)
- {
-    
-                if(this.digit_regex.test(this.input.value)) {
-                    let inputint= parseInt(this.input.value);
-                    let sum= Math.round((currency_val*inputint/converted_val)*100)/100;
-                   console.log(sum)
-                    
-
-                }
-                else
-                {
-                    this.input.classList.toggle("error");
-                    this.inputerror.classList.toggle("isActive");
-
-                }
-
-
-    }
-
-count()
-{
-
-    this.btn.addEventListener('click', (ev)=>{
-
-            for(let i=0; i<this.slt.options.length;i++)
-            {
-                var fir_option= this.slt.options[i];
-                var sec_option= this.sec.options[i];
-                
-                if(fir_option.selected )
-                {
-
-                 var val= new CurrencyData(this.data, fir_option.value).getUrl();
-
-                    if(typeof val['mid']==='number' && typeof val['mid']!='undefined')
-                    {
-                        var f= val['mid'];
-
-                    }
-
-
-                }
-                if(sec_option.selected)
-                {
-                    var  sval= new CurrencyData(this.data, sec_option.value).getUrl();
-                    
-                    if(typeof sval['mid']==='number' && typeof sval['mid']!='undefined')
-                    {
-                        var t= sval['mid'];
-                    }
-
-                }
-
-
-            }
-            
-                this.convert(f, t);
-
-            
-            
-
-    },false)
-}
-
-
 
 }
 

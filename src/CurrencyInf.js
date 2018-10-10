@@ -1,27 +1,27 @@
 export class CurrencyData {
     
-    constructor(obj, val){
+    constructor(currencyTableObjects, selectedOptionValue){
 
-        this.obj= obj;
-        this.val= val;
-        this.currency_data= {};
-        this.currency_obj= this.obj[0]['rates'];
-        this.currnecy_values= {};
+        this.currencyTableObjects= currencyTableObjects;
+        this.selectedOptionValue= selectedOptionValue;
+        this.currencyInformation= {};
+        this.currencyObject= this.currencyTableObjects[0]['rates'];
+        this.currnecyValues= {};
 
     }
 
     getCurrencyValue(){
 
     
-    for(let key in this.currency_obj)
+    for(let key in this.currencyObject)
     {
        
-            this.currency_data[key]= {
-                table: this.obj[0]['table'],
-                name: this.currency_obj[key]['currency'],
-                code: this.currency_obj[key]['code'],
-                mid: this.currency_obj[key]['mid'],
-                date: this.obj[0]["effectiveDate"]
+            this.currencyInformation[key]= {
+                table: this.currencyTableObjects[0]['table'],
+                name: this.currencyObject[key]['currency'],
+                code: this.currencyObject[key]['code'],
+                mid: this.currencyObject[key]['mid'],
+                date: this.currencyTableObjects[0]["effectiveDate"]
  
             };
             
@@ -30,30 +30,31 @@ export class CurrencyData {
         
  
     }
-    let l= Object.keys(this.currency_data).length-1;
-    this.currency_data[l].name="Polski zloty";
-    this.currency_data[l].code="PLN";
-    this.currency_data[l].mid=1;
+    let lastCurrency= Object.keys(this.currencyInformation).length-1;
+    this.currencyInformation[lastCurrency].name="Polski zloty";
+    this.currencyInformation[lastCurrency].code="PLN";
+    this.currencyInformation[lastCurrency].mid=1;
     
  
  
-   return this.currency_data;
+   return this.currencyInformation;
 }
     getUrl()
 {
     
-  for(let key in this.obj){  if(this.obj[key]['name']===this.val){
-       this.currnecy_values={
-       name:this.obj[key]['name'],
-       code:this.obj[key]['code'],
-       table:this.obj[key]['table'],
-       date: this.obj[key]['date'],
-       mid: this.obj[key]['mid']}  }};
-       
-  return this.currnecy_values
+  for(let key in this.currencyTableObjects){  if(this.currencyTableObjects[key]['name']===this.selectedOptionValue){
+       this.currnecyValues={
+       name:this.currencyTableObjects[key]['name'],
+       code:this.currencyTableObjects[key]['code'],
+       table:this.currencyTableObjects[key]['table'],
+       date: this.currencyTableObjects[key]['date'],
+       mid: this.currencyTableObjects[key]['mid']}  }};
+     
+  return this.currnecyValues
   
 
 } 
- 
+
+
  
  }
