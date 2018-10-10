@@ -1,5 +1,6 @@
 
 import {CurrencyData} from './CurrencyInf'
+import {Conversion} from './conversion'
 
 
 export class Dom
