@@ -6,7 +6,7 @@ var handler ={
     leftCurrencyField: document.getElementById("from"),
     rightCurrencyField: document.getElementById("to"),
     SelectList: document.getElementsByClassName("currency_list"),
-    select: document.getElementById("list"), 
+   
 
 }
 export {handler}

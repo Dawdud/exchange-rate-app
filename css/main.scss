@@ -1,7 +1,6 @@
+@import 'vendor/normalize';
 
-body{ 
 
-}
 .error
 {
    border: 2px solid red;
@@ -14,3 +13,15 @@ body{
 {
  display: block !important;
 }
+.vh-100{
+    height: 70vh;
+    
+}
+@media only screen and (min-width: 300px ) and (max-width:600px) {
+    body{
+        background-color: aqua;
+    }
+    
+
+}
+

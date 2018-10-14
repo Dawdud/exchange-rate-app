@@ -10,6 +10,7 @@ export class Conversion
         this.CurrencyObjects= {};
         this.currency=0;
         this.desiredCurrency=0;
+        this.error= false;
        
     }
     
@@ -27,9 +28,11 @@ export class Conversion
                 }
                 else
                 {
+                    let errorComunication= !this.error;
                     handler.input.classList.toggle("error");
-                    
                     handler.inputerror.classList.toggle("isActive");
+                    return errorComunication ;
+                   
 
                 }
 
@@ -77,11 +80,12 @@ export class Conversion
 
 
             }
-
-                
-                this.CurrencyObjects.desiredCurrencyValue= this.convert(this.currency, this.desiredCurrency);
+                let converted= this.convert(this.currency, this.desiredCurrency);
+                if(converted!==true){
+                this.CurrencyObjects.desiredCurrencyValue= converted;
                 let sumView= new Dom(this.CurrencyObjects);
                 sumView.currencyView();
+                }
                 
                  
             
