@@ -1,27 +1,11 @@
 @import 'vendor/normalize';
+@import 'partials/error';
+@import 'partials/header';
+@import 'partials/container';
+@import 'partials/view';
 
-
-.error
-{
-   border: 2px solid red;
-}
-#inputerror
-{
-     display: none;
-}
-.isActive
-{
- display: block !important;
-}
 .vh-100{
-    height: 70vh;
+    height: 40vh;
     
-}
-@media only screen and (min-width: 300px ) and (max-width:600px) {
-    body{
-        background-color: aqua;
-    }
-    
-
 }
 
