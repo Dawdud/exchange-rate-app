@@ -1,59 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Title</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-</head>
-<body>
-
-
-
- <div class= "container ">
-     <div class="app">
- <section>
-     <header>
-         <h1>Kalkulator Walut </h1>
-     </header>
- </section>
-<section>  
-    <div class= "row  justify-content-center align-items-center">
-
-            
-        <form class="col-lg-6  col-md-6 col-sm-12">
-            <div class="form-group ">
-                <input id="Currencyinput" class="form-control" type="text">
-                <p id="inputerror" >wprowadzane dane muszą zawierać cyfry  bez spacji oraz znaków interpunkcyjnych </p>
-                <select id="from" class="currency_list form-control">
-
-                </select>
-                <select id="to" class="currency_list form-control">
-
-                </select>
-                <button type="button"  class="btn btn-primary">przycisk</button>
-            </div>
-        </form>
-   
-         
-       </div>
-</section>
-</div>
-<div class="view">
-<section>
-       <div class="row justify-content-center">
-            <div id="currency_view" class="col-lg-6 col-md-6 col-sm-12">
-            
-                </div>
-        </div>
-</section>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container ">
+      <div class="app">
+        <section>
+          <header>
+            <h1>Kalkulator Walut</h1>
+          </header>
+        </section>
+        <section>
+          <div class="row  justify-content-center align-items-center">
+            <form class="col-lg-6  col-md-6 col-sm-12">
+              <div class="form-group ">
+                <input id="Currencyinput" class="form-control" type="text" />
+                <p id="inputerror">
+                  wprowadzane dane muszą zawierać cyfry bez spacji oraz znaków
+                  interpunkcyjnych
+                </p>
+                <select id="from" class="currency_list form-control"> </select>
+                <select id="to" class="currency_list form-control"> </select>
+                <button type="button" class="btn btn-primary">przycisk</button>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+      <div class="view">
+        <section>
+          <div class="row justify-content-center">
+            <div id="currency_view" class="col-lg-6 col-md-6 col-sm-12"></div>
+          </div>
+        </section>
+      </div>
     </div>
-  </div>
-    
- 
- <script  src="main.js"></script>
- 
-</body>
+
+    <script src="main.js"></script>
+  </body>
 </html>
